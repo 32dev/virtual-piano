@@ -25,6 +25,11 @@
             height: 160px;
             margin: 1rem;
             border: 1px solid darkgray;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
         }
 
         .line {
@@ -52,7 +57,7 @@
 </head>
 
 <body>
-    <div id="root"></div>
+    <!-- <div id="root"></div> -->
     <div id="keyboard">
         <div class="line">
             <div class="key 1 !">!<br>1</div>
@@ -236,25 +241,25 @@
             if (keyMap[e.key]) {
                 const keyElement = document.querySelector(`.key.${CSS.escape(e.key)}`);
                 if (keyElement) {
-                    let root = document.getElementById('root');
-                    root.innerHTML += e.key;
+                    // let root = document.getElementById('root');
+                    // root.innerHTML += e.key;
                     keyElement.style.backgroundColor = "black";
                 }
             }
         });
-        setInterval(function () {
-            let root = document.getElementById("root");
-            root.innerHTML += "__";
-        }, 250);
-        setInterval(function () {
-            let root = document.getElementById("root");
-            root.innerHTML += "<br>";
-            root.scrollIntoView({
-                behavior: "smooth",  // Optional: Smooth scroll animation
-                block: "end",        // Align to the bottom
-                inline: "nearest"    // Align horizontally (optional)
-            });
-        }, 4000)
+        // setInterval(function () {
+        //     let root = document.getElementById("root");
+        //     root.innerHTML += "__";
+        // }, 250);
+        // setInterval(function () {
+        //     let root = document.getElementById("root");
+        //     root.innerHTML += "<br>";
+        //     root.scrollIntoView({
+        //         behavior: "smooth",  // Optional: Smooth scroll animation
+        //         block: "end",        // Align to the bottom
+        //         inline: "nearest"    // Align horizontally (optional)
+        //     });
+        // }, 4000)
     </script>
 </body>
 
