@@ -7,9 +7,15 @@
     <title>piano</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/15.1.3/Tone.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
         * {
+            font-family: "Nanum Gothic", sans-serif;
+            font-weight: 400;
+            font-style: normal;
             margin: 0;
             padding: 0;
+            border-radius: 5px;
         }
 
         html,
@@ -17,17 +23,17 @@
             width: 100%;
             height: 100%;
             background-color: black;
-            color: white;
+            color: chartreuse;
         }
 
         #keyboard {
             width: 400px;
             height: 160px;
             margin: 1rem;
-            border: 1px solid darkgray;
+            border: 1px solid chartreuse;
             position: absolute;
             left: 50%;
-            top: 50%;
+            top: 75%;
 
             transform: translate(-50%, -50%);
         }
@@ -37,9 +43,9 @@
         }
 
         .key {
-            border: 1px solid darkgray;
+            border: 1px solid chartreuse;
             background-color: black;
-            color: white;
+            color: chartreuse;
             text-align: center;
             font-size: xx-small;
             width: 30px;
@@ -61,15 +67,18 @@
         }
 
         #root {
-            width: 400px;
-            height: 200px;
-            overflow-y: scroll;
+            width: 100%;
+            height: auto;
+            overflow-x: hidden;
+            word-break: break-word;
+            /* 긴 문자열 자동 줄바꿈 */
+            white-space: normal;
         }
     </style>
 </head>
 
 <body>
-    <!-- <div id="root"></div> -->
+    <div id="root"></div>
     <div id="keyboard">
         <div class="line">
             <div class="key 1 !">
@@ -354,7 +363,8 @@
             if (!e.repeat && keyMap[e.key]) {
                 const keyElement = document.querySelector(`.key.${CSS.escape(e.key)}`);
                 if (keyElement) {
-                    keyElement.style.backgroundColor = "white";
+                    keyElement.style.backgroundColor = "chartreuse";
+                    keyElement.style.color = 'black';
                 }
 
                 sampler.triggerAttackRelease(keyMap[e.key], "2n");
@@ -366,25 +376,26 @@
             if (keyMap[e.key]) {
                 const keyElement = document.querySelector(`.key.${CSS.escape(e.key)}`);
                 if (keyElement) {
-                    // let root = document.getElementById('root');
-                    // root.innerHTML += e.key;
+                    let root = document.getElementById('root');
+                    root.innerHTML += e.key;
                     keyElement.style.backgroundColor = "black";
+                    keyElement.style.color = 'chartreuse';
                 }
             }
         });
+        setInterval(function () {
+            let root = document.getElementById("root");
+            root.innerHTML += "__";
+        }, 100);
         // setInterval(function () {
         //     let root = document.getElementById("root");
-        //     root.innerHTML += "__";
-        // }, 250);
-        // setInterval(function () {
-        //     let root = document.getElementById("root");
-        //     root.innerHTML<div> </div>+= "<div>"</div>;
+        //     root.innerHTML += "<div></div>";
         //     root.scrollIntoView({
         //         behavior: "smooth",  // Optional: Smooth scroll animation
         //         block: "end",        // Align to the bottom
         //         inline: "nearest"    // Align horizontally (optional)
         //     });
-        // }, 4000)
+        // }, 2000)
     </script>
 </body>
 
